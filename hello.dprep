@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 18,
+  "id": "0badb2b4-c507-4aa8-86bf-f2de434be5eb",
+  "activities": [
+    {
+      "id": "e58fe500-e585-40cd-9db6-2382c12d3104",
+      "name": "TimeSeriesSensorData",
+      "blocks": [
+        {
+          "id": "fb224574-e3e7-4980-8ebb-6d93a3a65e9c",
+          "type": "Microsoft.DPrep.DataSourceBlock",
+          "arguments": {
+            "path": {
+              "target": 1,
+              "resourceDetails": [
+                {
+                  "path": "https://joannasstorage.blob.core.windows.net/joannascontainer/TimeSeriesSensorData.csv",
+                  "sas": {
+                    "id": "https://joannasstorage.blob.core.windows.net/joannascontainer/TimeSeriesSensorData.csv"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "36fc9429-6618-4d99-b20f-df87e5e0d2f1",
+          "type": "Microsoft.DPrep.ParseDelimitedBlock",
+          "arguments": {
+            "preview": false,
+            "useColumnHeaders": false,
+            "separator": " ",
+            "fileEncoding": 0,
+            "skipRows": 1,
+            "keepEmbeddedNewLines": false
+          }
+        },
+        {
+          "id": "fc6aacff-738a-4636-aceb-889c808b38a0",
+          "type": "Microsoft.DPrep.SetColumnTypesBlock",
+          "arguments": {
+            "columnConversion": [
+              {
+                "columnId": "Column7",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column14",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column22",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column4",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column8",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column15",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column23",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column6",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column10",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column16",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column24",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column5",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column12",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column19",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column3",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column9",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column17",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column25",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column1",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column11",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column18",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column26",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column20",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column2",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column13",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column21",
+                "typeProperty": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "c6550e44-6640-4233-9b10-7108f957c254",
+          "type": "Microsoft.DPrep.SampleBlock",
+          "arguments": {
+            "sampleStrategy": 0,
+            "sampleCount": 10000,
+            "sampleRevision": "26817c7c-eb53-4dd3-8af9-f7c65956e3ac",
+            "addPathColumn": false
+          }
+        }
+      ],
+      "inspectors": [
+        {
+          "id": "5e03ed25-77b2-415c-ad41-b2257869dfcd",
+          "type": "Microsoft.DPrep.DataQualityInspector",
+          "arguments": {}
+        },
+        {
+          "id": "ca4de85b-65a2-4f60-8008-124949940ea8",
+          "type": "Microsoft.DPrep.HistogramInspector",
+          "arguments": {
+            "columnId": "Column1",
+            "numberOfBreaks": 6,
+            "defaultBucketing": true,
+            "haloEffect": true,
+            "densityPlot": true
+          }
+        }
+      ]
+    }
+  ],
+  "runConfigurations": []
+}
