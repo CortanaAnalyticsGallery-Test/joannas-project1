@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 26,
+  "id": "0badb2b4-c507-4aa8-86bf-f2de434be5eb",
+  "activities": [
+    {
+      "id": "e58fe500-e585-40cd-9db6-2382c12d3104",
+      "name": "TimeSeriesSensorData",
+      "blocks": [
+        {
+          "id": "fb224574-e3e7-4980-8ebb-6d93a3a65e9c",
+          "type": "Microsoft.DPrep.DataSourceBlock",
+          "arguments": {
+            "path": {
+              "target": 1,
+              "resourceDetails": [
+                {
+                  "path": "https://joannasstorage.blob.core.windows.net/joannascontainer/TimeSeriesSensorData.csv",
+                  "sas": {
+                    "id": "https://joannasstorage.blob.core.windows.net/joannascontainer/TimeSeriesSensorData.csv"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "36fc9429-6618-4d99-b20f-df87e5e0d2f1",
+          "type": "Microsoft.DPrep.ParseDelimitedBlock",
+          "arguments": {
+            "preview": false,
+            "useColumnHeaders": false,
+            "separator": " ",
+            "fileEncoding": 0,
+            "skipRows": 1,
+            "handleQuotedLineBreaks": false
+          }
+        },
+        {
+          "id": "fc6aacff-738a-4636-aceb-889c808b38a0",
+          "type": "Microsoft.DPrep.SetColumnTypesBlock",
+          "arguments": {
+            "columnConversion": [
+              {
+                "columnId": "Column7",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column14",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column22",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column4",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column8",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column15",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column23",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column6",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column10",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column16",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column24",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column5",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column12",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column19",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column3",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column9",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column17",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column25",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column1",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column11",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column18",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column26",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column20",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column2",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column13",
+                "typeProperty": 3
+              },
+              {
+                "columnId": "Column21",
+                "typeProperty": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "c6550e44-6640-4233-9b10-7108f957c254",
+          "type": "Microsoft.DPrep.SampleBlock",
+          "arguments": {
+            "samples": [
+              {
+                "sampleId": "dd287737-8ef4-4521-b639-ccd8ddd8cf39",
+                "sampleRevision": "23fdd6d7-343a-46a2-8ad0-75a9d4f4348d",
+                "sampleStrategy": 0,
+                "sampleCount": 10000,
+                "allowAutoGen": true
+              }
+            ],
+            "activeSample": "dd287737-8ef4-4521-b639-ccd8ddd8cf39"
+          }
+        },
+        {
+          "id": "fb784fbb-8746-4990-9f07-293546a12b48",
+          "type": "Microsoft.DPrep.HandlePathColumnBlock",
+          "arguments": {
+            "pathColumnOperation": 0
+          }
+        }
+      ],
+      "inspectors": [
+        {
+          "id": "5e03ed25-77b2-415c-ad41-b2257869dfcd",
+          "type": "Microsoft.DPrep.DataQualityInspector",
+          "arguments": {},
+          "reference": {
+            "referenceType": 0,
+            "referenceContainerPath": null,
+            "referencedActivityId": "e58fe500-e585-40cd-9db6-2382c12d3104",
+            "referencedBranchId": null,
+            "referencedStep": {
+              "stepReferenceType": 1,
+              "referencedStepId": null,
+              "fallback": 1
+            }
+          },
+          "isBackground": true
+        },
+        {
+          "id": "ca4de85b-65a2-4f60-8008-124949940ea8",
+          "type": "Microsoft.DPrep.HistogramInspector",
+          "arguments": {
+            "columnId": "Column1",
+            "numberOfBreaks": 6,
+            "defaultBucketing": true,
+            "haloEffect": true,
+            "densityPlot": true
+          },
+          "reference": {
+            "referenceType": 0,
+            "referenceContainerPath": null,
+            "referencedActivityId": "e58fe500-e585-40cd-9db6-2382c12d3104",
+            "referencedBranchId": null,
+            "referencedStep": {
+              "stepReferenceType": 1,
+              "referencedStepId": null,
+              "fallback": 1
+            }
+          },
+          "isBackground": true
+        },
+        {
+          "id": "99815135-2e2b-463a-b1fd-1c0c4d01ad87",
+          "type": "Microsoft.DPrep.DataProfileInspector",
+          "arguments": {},
+          "reference": {
+            "referenceType": 0,
+            "referenceContainerPath": null,
+            "referencedActivityId": "e58fe500-e585-40cd-9db6-2382c12d3104",
+            "referencedBranchId": null,
+            "referencedStep": {
+              "stepReferenceType": 0,
+              "referencedStepId": "c6550e44-6640-4233-9b10-7108f957c254",
+              "fallback": 1
+            }
+          },
+          "isBackground": true
+        }
+      ]
+    }
+  ],
+  "runConfigurations": []
+}
